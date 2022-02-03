@@ -16,3 +16,9 @@
 #9*9=81
 #10*10=100
 
+A = int(input("Enter A: "))
+B = int(input("Enter B: "))
+
+for i in range(A,B+1):
+    result = i*i
+    print("{}*{}={}".format(i,i,result))

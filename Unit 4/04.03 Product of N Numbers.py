@@ -3,3 +3,10 @@
 #For the given integer N, calculate the value N!
 #Don't use math module in this exercise.
 
+result = 1
+N = int(input("Enter number: "))
+
+for i in range(1,N+1):
+    result = result * i
+
+print(result)
