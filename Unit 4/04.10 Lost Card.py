@@ -5,3 +5,17 @@
 #    Next, read each card (there will be 9 of them) and sum of their values.
 #    Finally, subract the two sums. The difference is the missing card.
 
+N = int(input("Enter number of cards: "))
+x = 0
+z = 0
+
+for i in range(1,N+1):
+    x += i
+
+for i in range(1,N):
+    y = int(input("Enter card: "))
+    z += y
+
+result = x - z
+
+print("Missing card: {}".format(result))
