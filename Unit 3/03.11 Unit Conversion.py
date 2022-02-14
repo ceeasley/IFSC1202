@@ -23,6 +23,7 @@ elif FromUnit == "mi":
     pass
 else:
     print("FromUnit is not valid.")
+    exit
 
 ToUnit = input("Enter To Unit (in, ft, yd, mi): ")
 
@@ -36,6 +37,7 @@ elif FromUnit == "mi":
     pass
 else:
     print("ToUnit is not valid.")
+    exit
 
 if FromUnit == ToUnit:
     x = 1
