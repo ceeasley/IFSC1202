@@ -10,7 +10,7 @@ with open("06.05 CompareFileA.txt") as FileA, open("06.05 CompareFileB.txt") as 
     A = FileA.readline()
     B = FileB.readline()
 
-    line = 1
+    line = 0
     difference = 0
 
     while A:
