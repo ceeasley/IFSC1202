@@ -31,7 +31,7 @@ def lifepath(month,day,year):
     x = 0
     for i in range(0,len(month)):
         lifepathm += i
-        if lifepathm > 9:
+        while lifepathm > 9:
             for i in range(0,len(lifepathm)):
                 x += i
                 lifepathm = x
@@ -39,7 +39,7 @@ def lifepath(month,day,year):
         return lifepathm
     for i in range(0,len(day)):
         lifepathd += i
-        if lifepathd > 9:
+        while lifepathd > 9:
             for i in range(0,len(lifepathd)):
                 x += i
                 lifepathd = x
@@ -47,7 +47,7 @@ def lifepath(month,day,year):
         return lifepathd
     for i in range(0,len(year)):
         lifepathy += i
-        if lifepathy > 9:
+        while lifepathy > 9:
             for i in range(0,len(lifepathy)):
                 x += i
                 lifepathy = x
@@ -57,6 +57,7 @@ def lifepath(month,day,year):
     return lifepath
 
 def destinynumber(first, mid, last):
+    x = 0
     for i in range(0,len(first)):
         sumf = 0
         if i == "a" or i == "j" or i == "s":
@@ -77,6 +78,11 @@ def destinynumber(first, mid, last):
             sumf += 8
         if i == "i" or i == "r":
             sumf += 9
+        while sumf > 9:
+            for i in range(0,len(sumf)):
+                x += i
+            sumf = x
+            x = 0
     for i in range(0,len(mid)):
         summ = 0
         if i == "a" or i == "j" or i == "s":
@@ -97,6 +103,11 @@ def destinynumber(first, mid, last):
             summ += 8
         if i == "i" or i == "r":
             summ += 9
+        while summ > 9:
+            for i in range(0,len(summ)):
+                x += i
+            summ = x
+            x = 0
     for i in range(0,len(last)):
         suml = 0
         if i == "a" or i == "j" or i == "s":
@@ -117,6 +128,10 @@ def destinynumber(first, mid, last):
             suml += 8
         if i == "i" or i == "r":
             suml += 9
+        while suml > 9:
+            for i in range(0,len(suml)):
+                x += i
+            suml = x
+            x = 0
     destiny = sumf + summ + suml
 
-    
