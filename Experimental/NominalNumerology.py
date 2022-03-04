@@ -1,53 +1,51 @@
 print("Welcome! First, I need some information from you.")
-fname = lower(input("Please enter your first name: "))
-mname = lower(input("Please enter your middle name (leave blank if you don't have one): "))
-lname = lower(input("Please enter your last name: "))
+fname = input("Please enter your first name: ")
+mname = input("Please enter your middle name (leave blank if you don't have one): ")
+lname = input("Please enter your last name: ")
 mdate = input("Please enter your birth month (MM): ")
 ddate = input("Please enter your birth day (DD): ")
 ydate = input("Please enter your birth year (YYYY): ")
 
-f_name = ''.join(filter(str.isalpha,fname))
-m_name = ''.join(filter(str.isalpha,mname))
-l_name = ''.join(filter(str.isalpha,lname))
+f_name = ''.join(filter(str.isalpha,fname.lower()))
+m_name = ''.join(filter(str.isalpha,mname.lower()))
+l_name = ''.join(filter(str.isalpha,lname.lower()))
 
-while True:
-    if str.isnumeric(mdate) is False:
+while False:
+    if mdate.isnumeric() is False:
         print("Error: Please enter a number for your birth month.")
         mdate = input("Birth month (MM): ")
-    if str.isnumeric(ddate) is False:
+    if ddate.isnumeric() is False:
         print("Error: Please enter a number for your birth day.")
         ddate = input("Birth day (DD): ")
-    if str.isnumeric(ydate) is False:
+    if ydate.isnumeric() is False:
         print("Error: Please enter a number for your birth year.")
         ydate = input("Birth year (YYYY): ")
+    else:
+        True
 
+print(f"Thanks, {fname}!")
 birth = input("Is the name you entered your birth name? (Y/N): ")
 
 if birth == "N":
-    fbname = lower(input("Please enter your first name: "))
-    mbname = lower(input("Please enter your middle name (leave blank if you don't have one): "))
-    lbname = lower(input("Please enter your last name: "))
-    fb_name = ''.join(filter(str.isalpha,fbname))
-    mb_name = ''.join(filter(str.isalpha,mbname))
-    lb_name = ''.join(filter(str.isalpha,lbname))
+    fbname = input("Please enter your first name: ")
+    mbname = input("Please enter your middle name (leave blank if you don't have one): ")
+    lbname = input("Please enter your last name: ")
+    fb_name = ''.join(filter(str.isalpha,fbname.lower()))
+    mb_name = ''.join(filter(str.isalpha,mbname.lower()))
+    lb_name = ''.join(filter(str.isalpha,lbname.lower()))
 else:
     fbname = f_name
     mbname = m_name
     lbname = l_name
 if birth == "Y":
-    birth = input("Has your name changed? (Y/N): ")
-    if birth == "Y":
-        fnname = lower(input("Please enter your first name: "))
-        mnname = lower(input("Please enter your middle name (leave blank if you don't have one): "))
-        lnname = lower(input("Please enter your last name: "))
-        fn_name = ''.join(filter(str.isalpha,fnname))
-        mn_name = ''.join(filter(str.isalpha,mnname))
-        ln_name = ''.join(filter(str.isalpha,lnname))
-    else:
-        pass
-
-compdate = ''.join(ddate,mdate,ydate)
-compname = ''.join(f_name,m_name,l_name)
+    change = input("Has your name changed? (Y/N): ")
+    if change == "Y":
+        fnname = input("Please enter your first name: ")
+        mnname = input("Please enter your middle name (leave blank if you don't have one): ")
+        lnname = input("Please enter your last name: ")
+        fn_name = ''.join(filter(str.isalpha,fnname.lower()))
+        mn_name = ''.join(filter(str.isalpha,mnname.lower()))
+        ln_name = ''.join(filter(str.isalpha,lnname.lower()))
 
 def lifepath(month,day,year):
     lifepathm = 0
@@ -57,27 +55,24 @@ def lifepath(month,day,year):
     for i in range(0,len(month)):
         lifepathm += i
         while lifepathm > 9 and lifepathm != 11 and lifepathm != 22 and lifepathm != 33:
-            for i in range(0,len(lifepathm)):
+            for i in range(0,len(str(lifepathm))):
                 x += i
                 lifepathm = x
             x = 0
-        return lifepathm
     for i in range(0,len(day)):
         lifepathd += i
         while lifepathd > 9 and lifepathd != 11 and lifepathd != 22 and lifepathd != 33:
-            for i in range(0,len(lifepathd)):
+            for i in range(0,len(str(lifepathd))):
                 x += i
                 lifepathd = x
             x = 0
-        return lifepathd
     for i in range(0,len(year)):
         lifepathy += i
         while lifepathy > 9 and lifepathy != 11 and lifepathy != 22 and lifepathy != 33:
-            for i in range(0,len(lifepathy)):
+            for i in range(0,len(str(lifepathy))):
                 x += i
                 lifepathy = x
             x = 0
-        return lifepathy
     lifepath = lifepathd + lifepathm + lifepathy
     while lifepath > 9 and lifepath != 11 and lifepath != 22:
         for i in range(0,len(lifepath)):
@@ -380,7 +375,7 @@ print("A Personality number shows what you send out into the world, or how other
 print("A Soul Urge (or Heart's Desire) number represents what your heart and soul crave more than anything else. This is the lens through which you view the world and the motivation for your decisions. If this number matches your Life Path, you'll find acting with true authenticity much easier.")
 print("A master number is 11 or 22 (and sometimes 33), which is handled differently in calculations and is not reduced. They are considered more powerful than other numbers.")
 
-print(f'Okay, {fname}, lets look at your numbers!')
+print(f"Okay, {fname}, let's look at your numbers!")
 print(f'Your Life Path is {lifepath(mdate,ddate,ydate)}. Your Life Path is based on the date you were born.')
 
 if lifepath(mdate,ddate,ydate) == 1:
@@ -407,54 +402,56 @@ if lifepath(mdate,ddate,ydate) == 22:
     print("This Life Path number indicates a connection with the spiritual world and can use that knowledge in daily life.")
 
 print(f'Your Destiny number is {destinynumber(f_name, m_name, l_name)}.')
-if f_name != fb_name or m_name != mb_name or l_name != lb_name:
+if birth == "N":
     print(f'The Destiny number associated with your birth name is {destinynumber(fb_name, mb_name, lb_name)}. You may feel more attachment to this number or the one associated with the name you currently use.')
-elif fn_name is not None or mn_name is not None or ln_name is not None:
-    print(f'The Destiny number associated with your birth name is {destinynumber(fn_name, mn_name, ln_name)}. You may feel more attachment to this number or the one associated with the name you first entered.')
+elif change == "Y":
+    print(f'The Destiny number associated with your current name is {destinynumber(fn_name, mn_name, ln_name)}. You may feel more attachment to this number or the one associated with the name you first entered.')
 
 dn = input("Which name would you like to proceed with? (1 = first name entered/2 = second name entered): ")
 
 if dn == 1:
-    destinynum = destinynumber(f_name, m_name, l_name)
+    dest = destinynumber(f_name, m_name, l_name)
 if dn == 2:
-    if f_name != fb_name or m_name != mb_name or l_name != lb_name:
-        destinynum = destinynumber(fb_name, mb_name, lb_name)
-    elif fn_name is not None or mn_name is not None or ln_name is not None:
-        destinynum = destinynumber(fn_name, mn_name, ln_name)
+    if birth == "N":
+        dest = destinynumber(fb_name, mb_name, lb_name)
+    if change == "Y":
+        dest = destinynumber(fn_name, mn_name, ln_name)
+else:
+    dest = destinynumber(f_name, m_name, l_name)
 
-print(f'Okay, your Destiny number is {destinynum}.')
+print(f'Okay, your Destiny number is {dest}.')
 
-if destinynum == 1:
+if dest == 1:
     print("Your Destiny number indicates that you are a natural leader.")
-if destinynum == 2:
+if dest == 2:
     print("Your Destiny number indicates that you are a born diplomat.")
-if destinynum == 3:
+if dest == 3:
     print("Your Destiny number indicates that you are an incredible companion.")
-if destinynum == 4:
+if dest == 4:
     print("Your Destiny number indicates that you are driven to get things done.")
-if destinynum == 5:
+if dest == 5:
     print("Your Destiny number indicates that you are an excellent communicator.")
-if destinynum == 6:
+if dest == 6:
     print("Your Destiny number indicates that you are a wonderful nurturer.")
-if destinynum == 7:
+if dest == 7:
     print("Your Destiny number indicates that you are a wise educator.")
-if destinynum == 8:
+if dest == 8:
     print("Your Destiny number indicates that you are a hard worker.")
-if destinynum == 9:
+if dest == 9:
     print("Your Destiny number indicates that you are a natural philanthropist.")
-if destinynum == 11:
+if dest == 11:
     print("Your Destiny number indicates that you are a born performer.")
-if destinynum == 22:
+if dest == 22:
     print("Your Destiny number indicates that you are a magnetic person.")
 
 if dn == 1:
     pn = personalitynum(f_name, m_name, l_name)
     print(f'Your Personality number is {pn}.')
 if dn == 2:
-    if f_name != fb_name or m_name != mb_name or l_name != lb_name:
+    if birth == "N":
         pn = personalitynum(fb_name, mb_name, lb_name)
         print(f'Your Personality number is {pn}.')
-    elif fn_name is not None or mn_name is not None or ln_name is not None:
+    elif change == "Y":
         pn = personalitynum(fn_name, mn_name, ln_name)
         print(f'Your Personality number is {pn}.')
 
@@ -485,10 +482,10 @@ if dn == 1:
     su = soulurgenum(f_name, m_name, l_name)
     print(f'Your Soul Urge is {su}.')
 if dn == 2:
-    if f_name != fb_name or m_name != mb_name or l_name != lb_name:
+    if birth == "N":
         su = soulurgenum(fb_name, mb_name, lb_name)
         print(f'Your Soul Urge is {su}.')
-    elif fn_name is not None or mn_name is not None or ln_name is not None:
+    elif change == "Y":
         su = soulurgenum(fn_name, mn_name, ln_name)
         print(f'Your Soul Urge is {su}.')
 
