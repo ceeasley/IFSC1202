@@ -173,6 +173,28 @@ def destinynumber(first, mid, last):
 
 def personalitynum(first,mid,last):
     x = 0
+    vowl = ["a","e","i","o","u"]
+    if "y" in first:
+        z = re.findall(".{0,1}y.{0,1}",first)
+        for i in vowl:
+            if i in z or z.index("y") == 0:
+                sumf += 7
+            else:
+                sumf += 0
+    if "y" in mid:
+        z = re.findall(".{0,1}y.{0,1}",mid)
+        for i in vowl:
+            if i in z or z.index("y") == 0:
+                summ += 7
+            else:
+                summ += 0
+    if "y" in last:
+        z = re.findall(".{0,1}y.{0,1}",last)
+        for i in vowl:
+            if i in z or z.index("y") == 0:
+                suml += 7
+            else:
+                suml += 0
     for i in range(0,len(first)):
         sumf = 0
         if i == "j" or i == "s":
@@ -187,7 +209,7 @@ def personalitynum(first,mid,last):
             sumf += 5
         if i == "f" or i == "x":
             sumf += 6
-        if i == "g" or i == "p" or i == "y":
+        if i == "g" or i == "p":
             sumf += 7
         if i == "h" or i == "q" or i == "z":
             sumf += 8
@@ -214,7 +236,7 @@ def personalitynum(first,mid,last):
             summ += 5
         if i == "f" or i == "x":
             summ += 6
-        if i == "g" or i == "p" or i == "y":
+        if i == "g" or i == "p":
             summ += 7
         if i == "h" or i == "q" or i == "z":
             summ += 8
@@ -241,7 +263,7 @@ def personalitynum(first,mid,last):
             suml += 5
         if i == "f" or i == "x":
             suml += 6
-        if i == "g" or i == "p" or i == "y":
+        if i == "g" or i == "p":
             suml += 7
         if i == "h" or i == "q" or i == "z":
             suml += 8
@@ -264,6 +286,28 @@ def personalitynum(first,mid,last):
 
 def soulurgenum(first,mid,last):
     x = 0
+    vowl = ["a","e","i","o","u"]
+    if "y" in first:
+        z = re.findall(".{0,1}y.{0,1}",first)
+        for i in vowl:
+            if i in z or z.index("y") == 0:
+                sumf += 0
+            else:
+                sumf += 7
+    if "y" in mid:
+        z = re.findall(".{0,1}y.{0,1}",mid)
+        for i in vowl:
+            if i in z or z.index("y") == 0:
+                summ += 0
+            else:
+                summ += 7
+    if "y" in last:
+        z = re.findall(".{0,1}y.{0,1}",last)
+        for i in vowl:
+            if i in z or z.index("y") == 0:
+                suml += 0
+            else:
+                suml += 7
     for i in range(0,len(first)):
         sumf = 0
         if i == "a":
@@ -274,8 +318,6 @@ def soulurgenum(first,mid,last):
             sumf += 5
         if i == "o":
             sumf += 6
-        if i == "y":
-            sumf += 7
         if i == "i":
             sumf += 9
         else:
@@ -295,8 +337,6 @@ def soulurgenum(first,mid,last):
             summ += 5
         if i == "o":
             summ += 6
-        if i == "y":
-            summ += 7
         if i == "i":
             summ += 9
         else:
@@ -316,8 +356,6 @@ def soulurgenum(first,mid,last):
             suml += 5
         if i == "o":
             suml += 6
-        if i == "y":
-            suml += 7
         if i == "i":
             suml += 9
         else:
@@ -334,6 +372,13 @@ def soulurgenum(first,mid,last):
         soulurge = x
         x = 0
     return soulurge
+
+print("Before we continue, let's define a few terms.")
+print("A Life Path number offers insight into your lifetime mission, strengths and weaknesses, and challenges. It alludes to your greater overall purpose.")
+print("A Destiny (or Expression) number can describe your traits, character, and destiny. It describes how you will follow your life path.")
+print("A Personality number shows what you send out into the world, or how other people perceive you.")
+print("A Soul Urge (or Heart's Desire) number represents what your heart and soul crave more than anything else. This is the lens through which you view the world and the motivation for your decisions. If this number matches your Life Path, you'll find acting with true authenticity much easier.")
+print("A master number is 11 or 22 (and sometimes 33), which is handled differently in calculations and is not reduced. They are considered more powerful than other numbers.")
 
 print(f'Okay, {fname}, lets look at your numbers!')
 print(f'Your Life Path is {lifepath(mdate,ddate,ydate)}. Your Life Path is based on the date you were born.')
@@ -357,9 +402,9 @@ if lifepath(mdate,ddate,ydate) == 8:
 if lifepath(mdate,ddate,ydate) == 9:
     print("This Life Path number is that of an old soul. You are honest--perhaps to a fault--and look to leave the world better than you found it.")
 if lifepath(mdate,ddate,ydate) == 11:
-    print("This Life Path number is a Master Number. You are charismatic and have good instincts.")
+    print("This Life Path number shows that you are charismatic and have good instincts.")
 if lifepath(mdate,ddate,ydate) == 22:
-    print("This Life Path number is a Master Number. You have a connection with the spiritual world and can use that knowledge in daily life.")
+    print("This Life Path number indicates a connection with the spiritual world and can use that knowledge in daily life.")
 
 print(f'Your Destiny number is {destinynumber(f_name, m_name, l_name)}.')
 if f_name != fb_name or m_name != mb_name or l_name != lb_name:
@@ -462,10 +507,10 @@ if su == 6:
 if su == 7:
     print("Your Soul Urge indicates that you are very independent. You need tangible evidence and personal space.")
 if su == 8:
-    print("Your Soul Urge indicates that you are ")
+    print("Your Soul Urge indicates that you are motivated by building power and wealth and you are skilled at it. Don't lose sight of the bigger picture.")
 if su == 9:
-    print("Your Soul Urge indicates that you are ")
+    print("Your Soul Urge indicates that you are deeply concerned with global consciousness and have a broader perspective than most.")
 if su == 11:
-    print("Your Soul Urge indicates that you are ")
+    print("Your Soul Urge indicates that you are on a unique spiritual journey and have a well-developed sense of morality.")
 if su == 22:
-    print("Your Soul Urge indicates that you are ")
+    print("Your Soul Urge indicates that you are determined to leave a mark on this world.")
