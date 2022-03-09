@@ -1,6 +1,6 @@
 def ProperCase(n):
-    n = n.lower()
-    n = n.capitalize()
+    x = n.lower()
+    n = x.capitalize()
     return n
 
 def RemoveNewLines(n):
@@ -20,29 +20,33 @@ def LastName(n):
     return last
 
 def MiddleName(n):
-    middle = n[n.find(" "):n.rfind(" ")]
+    start = n.find(" ")
+    end = n.rfind(" ")
+    middle = n[start+1:end]
     return middle
-
-
 
 with open("07.11 Names.txt") as fullnames:
     print(f'{"First":^10} {"Middle":^10} {"Last":^10}')
     print(f'{10*"-"} {10*"-"} {10*"-"}')
-    name = fullnames.readlines()
+    name = fullnames.readline()
     while name:
-        RemoveNewLines(name)
+        name = RemoveNewLines(name)
+        name = Trim(name)
+
         first = FirstName(name)
         middle = MiddleName(name)
         last = LastName(name)
-        Trim(first)
-        Trim(middle)
-        Trim(last)
+        
+        first = Trim(first)
+        middle = Trim(middle)
+        last = Trim(last)
+        
+        first = ProperCase(first)
+        middle = ProperCase(middle)
+        last = ProperCase(last)
+        
         if len(middle) == 1:
             middle = middle + "."
-        ProperCase(first)
-        ProperCase(middle)
-        ProperCase(last)
+
         print(f'{first:10} {middle:10} {last:10}')
-
-
-
+        name = fullnames.readline()
