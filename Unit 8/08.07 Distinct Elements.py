@@ -3,8 +3,7 @@ numlist = nums.split()
 
 count = len(numlist)
 
-for i in range(len(numlist)+1):
-    while i <= len(numlist):
-        if numlist[i] == numlist [i+1]:
-            count -= 1
+for i in range(1, len(numlist)):
+    if (numlist[i] == numlist [i-1]):
+        count -= 1
 print(f"Number of Distinct Elements: {count}")
