@@ -7,15 +7,17 @@ def print_list(a):
 def swap_columns(a,i,j):
     for x in range(len(a)):
         a[x][i], a[x][j] = a[x][j], a[x][i]
+    return a
 
 with open("09.02 NumbersList.txt") as lines:
     array = []
     for line in lines:
         row = line.split()
         array.append(row)
-print_list(array)
-swap = input("Enter the columns to swap: ")
-columns = swap.split()
-x = int(columns[0])
-y = int(columns[1])
-print_list(swap_columns(array,x,y))
+    print_list(array)
+    toswap = input("Enter the columns to swap: ")
+    columns = toswap.split()
+    x = int(columns[0])
+    y = int(columns[1])
+    swapped = swap_columns(array,x,y)
+    print_list(swapped)
