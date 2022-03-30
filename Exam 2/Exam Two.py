@@ -9,7 +9,7 @@ with open("CarSales.txt") as sales:
         saledata = sale.split(",")
         array.append(saledata)
         salecount += 1
-        # salecount consistently stops at 500 in spite of repeatedly checking the copy/pasted file and also deleting and uploading a downloaded copy, reloading Gitpod, etc.
+        # salecount consistently stops at 500, no error in debugging
 for i in range(len(array)):
     count += 1
     salesum += int(array[i][1])
@@ -30,4 +30,4 @@ if make != "":
     if makecount != 0:
         makeavg = int(makesale/makecount)
         diff = (makeavg-saleavg)/saleavg
-        print(f'{makecount:>6} Cars Sold\n${makeavg} Average Price\n{diff:>6.2%} Above/Below Average')
+        print(f'{makecount:>6} Cars Sold\n${makeavg:>} Average Price\n{diff:>6.2%} Above/Below Average')
