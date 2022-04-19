@@ -6,8 +6,18 @@ class RetailItem:
     def inval(self):
         invval = float(self.UnitsOnHand) * float(self.Price)
         return invval
-
-print(f'{"Description":15} {"Units On Hand":15} {"Price":10} {"Inventory Value":15}')
+def print_inventory(x):
+    print(f'{"Description":15} {"Units On Hand":15} {"Price":10} {"Inventory Value":15}')
+    for i in range(len(x)):
+        newitem = x[i]
+        newinval = newitem.inval()
+        print(f'{newitem.description:15} {newitem.UnitsOnHand:15} {newitem.Price:<10} {newinval:15.2f}')
+def find_inventory(list1, item):
+    index = -1
+    for i in range(len(list1)):
+        if list1[i][0] == item:
+            index = i
+    return index
 with open ("11.01 Inventory.txt") as lines:
     array = []
     for line in lines:
@@ -15,20 +25,20 @@ with open ("11.01 Inventory.txt") as lines:
             line = line.replace(",","")
             row = line.split()
             array.append(row)
-# print_inventory function
-# find_inventory function
+    inventory = []
     for i in range(len(array)):
         newitem = RetailItem(array[i][0],array[i][1],array[i][2])
-        newinval = newitem.inval()
-        print(f'{newitem.description:15} {newitem.UnitsOnHand:15} {newitem.Price:10} {newinval:15.2f}')
+        inventory.append(newitem)
+    print_inventory(inventory)
     with open ("11.01 InventoryUpdate.txt") as updates:
-        a = []
+        newprice = []
         for update in updates:
             if update != "\n":
                 update = update.replace(",","")
                 row = update.split()
-                a.append(row)
-        for i in range(len(a)):
-            for i in range(len(array)):
-                if array[i][0] == a[i][0]:
-                    array[i][2] = a[i][1]
+                newprice.append(row)
+        for i in range(len(inventory)):
+            index = find_inventory(newprice, inventory[i].description)
+            if index != -1:
+                inventory[i].Price = float(newprice[index][1])
+        print_inventory(inventory)
