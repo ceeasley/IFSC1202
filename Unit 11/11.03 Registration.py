@@ -3,7 +3,9 @@ class Student:
             self.firstname = firstname
             self.lastname = lastname
             self.tnumber = tnumber
-            self.courses = courselist
+            self.reg = courselist
+        def register(self, course):
+            self.reg.append(course)
 class StudentList:
     def __init__(self, studentlist=[]):
         self.studentlist = studentlist  
@@ -12,13 +14,14 @@ class StudentList:
     def find_student(self, studenttofind):
         for i in range(len(self.studentlist)):
             if self.studentlist[i].tnumber == studenttofind:
-                return self.studentlist[i]
+                return i
+        return -1
     def print_student_list(self):
         print(f'{"First Name":^10} {"Last Name":10} {"ID Number":10} {"Course":9} {"Name":42} {"Room":10} {"Meeting Times":15}')
         for i in range(len(self.studentlist)):
             print(f'{self.studentlist[i].firstname:10} {self.studentlist[i].lastname:10} {self.studentlist[i].tnumber:10}')
-            for j in range(len(self.studentlist[i].courses)):
-                print(f'{" "*34}{self.studentlist[i].courses[j].dept:4} {self.studentlist[i].courses[j].num:4} {self.studentlist[i].courses[j].name:42} {self.studentlist[i].courses[j].room:10} {self.studentlist[i].courses[j].time:15}')
+            for j in range(len(self.studentlist[i].reg)):
+                print(f'{" "*34}{self.studentlist[i].reg[j].dept:4} {self.studentlist[i].reg[j].num:4} {self.studentlist[i].reg[j].name:42} {self.studentlist[i].reg[j].room:10} {self.studentlist[i].reg[j].time:15}')
     def add_student_from_file(self, filename):
         with open(filename) as lines:
             array = []
@@ -47,7 +50,8 @@ class Courselist:
     def find_course(self, departmenttofind, numbertofind):
         for i in range(len(self.courselist)):
             if self.courselist[i].num == numbertofind and self.courselist[i].dept == departmenttofind:
-                return self.courselist[i]
+                return i
+        return -1
     def add_course_from_file(self, filename):
         with open(filename) as lines:
             array = []
@@ -75,7 +79,7 @@ with open("11.03 Registration.txt") as lines:
             row[i] = row[i].strip()
         array.append(row)
     for i in range(len(array)):
-        student = students.find_student(array[i][0])
-        enrolled = mycourses.find_course(array[i][1], array[i][2])
-        student.courses.append(enrolled)
+        if students.find_student(array[i][0]) != -1:
+            if mycourses.find_course(array[i][1], array[i][2]) != -1:
+                students.studentlist[students.find_student(array[i][0])].register(mycourses.courselist[mycourses.find_course(array[i][1], array[i][2])])
     students.print_student_list()
