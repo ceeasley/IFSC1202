@@ -4,8 +4,6 @@ class Student:
             self.lastname = lastname
             self.tnumber = tnumber
             self.courses = courselist
-        def enroll(self, Course):
-            self.courses.append(Course)
 class StudentList:
     def __init__(self, studentlist=[]):
         self.studentlist = studentlist  
@@ -36,6 +34,8 @@ class StudentList:
                 self.add_student(newstudent)
     def __getitem__(self, index):
         return self.studentlist[index]
+    def __len__(self):
+        return len(self.studentlist)
 class Course:
         def __init__(self, department="", number="", name="", room="", meetingtimes=""):
             self.dept = department
@@ -49,12 +49,10 @@ class Courselist:
     def add_course(self, Course):
         self.courselist.append(Course)
     def find_course(self, departmenttofind, numbertofind):
-        index = -1
         for i in range(len(self.courselist)):
-            if self.courselist[i].dept == departmenttofind:
-                if self.courselist[i].num == numbertofind:
-                    return i
-        return index
+            if self.courselist[i].dept == departmenttofind and self.courselist[i].num == numbertofind:
+                return i
+        return -1
     def add_course_from_file(self, filename):
         with open(filename) as lines:
             array = []
@@ -68,6 +66,8 @@ class Courselist:
                 self.add_course(newcourse)
     def __getitem__(self, index):
         return self.courselist[index]
+    def __len__(self):
+        return len(self.courselist)
 
 mycourses = Courselist()
 mycourses.add_course_from_file("11.03 Courses.txt")
@@ -81,10 +81,9 @@ with open("11.03 Registration.txt") as lines:
         for i in range(len(row)):
             row[i] = row[i].strip()
         array.append(row)
-    for i in range(len(students)):
-        mystudent = students.__getitem__(i)
-        for j in range(len(array)):
-            if students.find_student(array[j][0]) == students.find_student(mystudent) and mycourses.find_course(array[j][1],array[j][2]) != -1:
-                mycourse = mycourses.__getitem__(mycourses.find_course(array[i][1],array[i][2]))
-        mystudent.enroll(mycourse)
+    
+    for i in range(len(array)):
+        mycourse = mycourses.__getitem__(mycourses.find_course(array[i][1],array[i][2]))
+        mystudent = students.__getitem__(students.find_student(array[i][0]))
+        mystudent.courses.append(mycourse)
     students.print_student_list()
